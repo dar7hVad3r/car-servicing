@@ -63,7 +63,10 @@ router.get('/schedule/:id', (req, res)=>{
     db.query(query, (error, result)=>{
         if(error) res.send({"status":"failed"})
         else{
-            res.send({"status":result[0]})
+            res.send({
+                "status":"success",
+                "data":result
+            })
         }
     })
 })

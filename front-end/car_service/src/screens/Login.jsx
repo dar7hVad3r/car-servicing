@@ -14,7 +14,6 @@ const Login = () => {
 		axios.post(url+'login', cred).then(response=>{
 			const result = response.data
 			if ( result != undefined && result.data.role === 'user' ){
-				db.user=result.data.id
 				history.push('/userprofile', result.data)
 			} else if ( result != undefined && result.data.role === 'admin' ){
 				history.push('/adminprofile')
@@ -39,7 +38,6 @@ const Login = () => {
 				<tr>
 					<td colSpan='2' > <button className="btn btn-success" onClick={login} >Login </button> </td>
 				</tr>
-				{db.user} 
 			</table>
 		</div>
 	);

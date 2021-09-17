@@ -1,0 +1,8 @@
+.bg-img-style{
+    background-image: url('./images/bg.jpg');
+}
+.client-heading{
+    text-align: center;
+    background-color: rgb(180, 180, 180, 0.8);
+    border-radius: 10px;
+}
