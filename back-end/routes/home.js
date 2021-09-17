@@ -45,7 +45,7 @@ router.delete('/user/:id',(req, res)=>{
 router.post('/schedule/:id', (req, res)=>{
     const {id} = req.params
     const {vehicle_type, s_date, s_time, wash} = req.body
-    const query = `insert into schedule values(0, ${id}, '${vehicle_type}', '${s_date}', '${s_time}', '${wash}')`
+    const query = `insert into schedule values(0, ${id}, '${vehicle_type}', '${s_date}', '${s_time}', '${wash}', 'pending', 'pending')`
     db.query(query, (error, result)=>{
         if(error) res.send({"status":"failed"})
         else{
@@ -61,6 +61,54 @@ router.get('/schedule/:id', (req, res)=>{
         if(error) res.send({"status":"failed"})
         else{
             res.send({"status":result[0]})
+        }
+    })
+})
+
+router.delete('/schedule/:id', (req, res)=>{
+    const {id} = req.params
+    const query = `delete from schedule where user_id = ${id}`
+    db.query(query, (error, result)=>{
+        if ( error ) res.send({"status":"failed"})
+        else{
+            res.send({"status":"success"})
+        }
+    })
+})
+
+router.get('/list', (req, res)=>{
+    const query = `select u.name, u.phone, s.vehicle_type, s.s_date, s.s_time, s.wash, s.payment, s.wash_status from user u inner join schedule s on u.id = s.user_id`
+    db.query(query, (error, result)=>{
+        if (error) res.send({"status":"failed"})
+        else{
+            res.send({
+                "status":"success",
+                "data":result
+            })
+        }
+    })
+})
+
+router.get('/payment/:id', (req, res)=>{
+    const {payment} = req.body
+    const {id} = req.params
+    const query = `update schedule set payment = '${payment}' where user_id = ${id}`
+    db.query(query, (error, result)=>{
+        if (error) res.send({"status":"failed", "error":error})
+        else{
+            res.send({"status":"success"})
+        }
+    })
+})
+
+router.get('/washstatus/:id', (req, res)=>{
+    const {washstatus} = req.body
+    const {id} = req.params
+    const query = `update schedule set wash_status = '${washstatus}' where user_id = ${id}`
+    db.query(query, (error, result)=>{
+        if (error) res.send({"status":"failed", "error":error})
+        else{
+            res.send({"status":"success"})
         }
     })
 })

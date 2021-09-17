@@ -29,13 +29,13 @@ insert into c_service values(default,"normal wash",120.00);
 insert into c_service values(default,"waterless car wash",125.50);
 
 
-insert into schedule values(default,1,"car",null,"9.00 am","hand car wash","online","done");
+insert into schedule values(default,1,"car",null,"9.00 am","hand car wash","pending","done");
 
-insert into schedule values(default,2,"bike",null,"11.00 am","normal wash","cash","pending");
+insert into schedule values(default,2,"bike",null,"11.00 am","normal wash","pending","pending");
 
-insert into schedule values(default,3,"car",null,"1.00 pm","waterless car wash","online","done");
+insert into schedule values(default,3,"car",null,"1.00 pm","waterless car wash","pending","done");
 
-insert into schedule values(default,4,"car",null,"3.00 pm","machine dryer wash","cash","pending");
+insert into schedule values(default,4,"car",null,"3.00 pm","machine dryer wash","pending","pending");
 
 
 
