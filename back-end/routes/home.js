@@ -1,5 +1,8 @@
 const { response } = require('express')
+const cors = require('cors')
 const express = require('express')
+const app = express()
+app.use(cors('*'))
 const router = express.Router()
 const db = require('../db')
 
@@ -109,6 +112,19 @@ router.get('/washstatus/:id', (req, res)=>{
         if (error) res.send({"status":"failed", "error":error})
         else{
             res.send({"status":"success"})
+        }
+    })
+})
+
+router.get('/prices', (req, res)=>{
+    const query = `select type, price from c_service`
+    db.query(query, (error, result)=>{
+        if (error) res.send({"status":"failed", "error":error})
+        else{
+            res.send({
+                "status":"success",
+                "data":result
+            })
         }
     })
 })
