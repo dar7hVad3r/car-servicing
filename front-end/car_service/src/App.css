@@ -6,3 +6,11 @@
     background-color: rgb(180, 180, 180, 0.8);
     border-radius: 10px;
 }
+
+.login-container{
+    height: 800px;
+}
+
+.center-table{
+    margin-top: 200px;
+}

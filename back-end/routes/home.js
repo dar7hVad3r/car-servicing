@@ -83,7 +83,7 @@ router.delete('/schedule/:id', (req, res)=>{
 })
 
 router.get('/list', (req, res)=>{
-    const query = `select u.name, u.phone, s.vehicle_type, s.s_date, s.s_time, s.wash, s.payment, s.wash_status from user u inner join schedule s on u.id = s.user_id`
+    const query = `select u.id, u.name, u.phone, s.vehicle_type, s.s_date, s.s_time, s.wash, s.payment, s.wash_status from user u inner join schedule s on u.id = s.user_id`
     db.query(query, (error, result)=>{
         if (error) res.send({"status":"failed"})
         else{
@@ -95,8 +95,9 @@ router.get('/list', (req, res)=>{
     })
 })
 
-router.get('/payment/:id', (req, res)=>{
+router.post('/payment/:id', (req, res)=>{
     const {payment} = req.body
+    console.log(payment)
     const {id} = req.params
     const query = `update schedule set payment = '${payment}' where user_id = ${id}`
     db.query(query, (error, result)=>{
@@ -107,7 +108,7 @@ router.get('/payment/:id', (req, res)=>{
     })
 })
 
-router.get('/washstatus/:id', (req, res)=>{
+router.post('/washstatus/:id', (req, res)=>{
     const {washstatus} = req.body
     const {id} = req.params
     const query = `update schedule set wash_status = '${washstatus}' where user_id = ${id}`

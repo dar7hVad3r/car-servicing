@@ -39,6 +39,8 @@ const User = () => {
       if (response.data.status === "success") alert("Schedule cleared");
       else alert("something went wrong");
     });
+    
+    history.push('/userreload', location.state)
   };
 
   const schedule = () => {
@@ -55,6 +57,7 @@ const User = () => {
         alert("something went wrong.");
       }
     });
+    history.push('/userreload', location.state)
   };
 
   const logout = () => {
